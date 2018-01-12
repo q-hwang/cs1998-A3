@@ -6,3 +6,6 @@ node_modules
 npm-debug.log
 vagrant/*
 terraform/*
+vagrant/site.yml
+src/app/.DS_Store
+src/app/.DS_Store
