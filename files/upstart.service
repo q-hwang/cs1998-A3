@@ -1,0 +1,8 @@
+[Unit]
+Description=upstart
+
+[Service]
+User=root
+Group=nogroup
+ExecStart={{ repository_path }}/src gunicorn app:app --bind=127.0.0.1:8000 --workers 3 --user=root --log-level=debug -e DB_USERNAME={{ DB_USERNAME }} -e DB_PASSWORD={{ DB_PASSWORD }} -e DB_NAME={{ DB_NAME }} -e DB_HOST={{ DB_HOST }} -e APP_SETTINGS={{ APP_SETTINGS }}
+Restart=always

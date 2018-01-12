@@ -9,3 +9,7 @@ terraform/*
 vagrant/site.yml
 src/app/.DS_Store
 src/app/.DS_Store
+*.pyc
+src/app/.DS_Store
+src/app/__init__.pyc
+vagrant/site.yml

@@ -50,7 +50,7 @@
     - name: Install pip requirements
       command: pip install -r {{ repository_path }}/src/requirements.txt
     - name: Copy Upstart configuration
-      template: src=upstart.conf.j2 dest=/etc/init/upstart.conf
+      template: src=upstart.service dest=/etc/systemd/system/upstart.service
     - name: install python mysql bindings
       apt: name=python-mysqldb state=installed
       become: yes
@@ -96,6 +96,8 @@
         APP_SETTINGS: '{{ APP_SETTINGS }}'
       args:
         chdir: '{{ repository_path }}/src/'
+    - name: Make sure our server is running
+      systemd: state=started name=upstart
     - name: Copy Nginx site values
       template: src=a3.nginx.j2 dest=/etc/nginx/sites-enabled/a3
       notify:
