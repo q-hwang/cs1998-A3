@@ -5851,17 +5851,25 @@ object-assign
                 })
             }
         }, {
-            key: "handleCreateTag",
+            key: "handleTypeTagName",
             value: function(e) {
-                var t = this;
-                return function(n) {
-                    p.default.post("/kanban/tags?name=" + e).then(function(e) {
-                        console.log(e.data),
-                        t.requestEntireBoard()
-                    }).catch(function(e) {
-                        console.log(e)
-                    })
+                var t = e.target.value;
+                this.setState({
+                    newTagName: t
+                })
+            }
+        },{
+            key: "handleCreateTag",
+            value: function() {
+                var e = this;
+                if (this.state.newTagName === undefined || this.state.newTagName === "") {
+                    return console.log("no input")
                 }
+                p.default.post("/kanban/tags?name=" + this.state.newTagName).then(function(e) {
+                    return console.log(e.data)
+                }).catch(function(e) {
+                    console.log(e)
+                })
             }
         },{
             key: "handleAddTag",
@@ -5895,7 +5903,7 @@ object-assign
                 var e = this
                   , t = this.state.data.board.todo || []
                   , n = this.state.data.board.inprogress || []
-                  , r = this.state.data.board.done || [];
+                  , r = this.state.data.board.done || []
                 return c.default.createElement("div", null, c.default.createElement("div", {
                     className: "board-back",
                     onClick: function() {
@@ -5904,18 +5912,25 @@ object-assign
                 }, "Back"), c.default.createElement("h1", {
                     className: "board-title"
                 }, this.state.data.board.title || null), c.default.createElement("div", {
-                    className: "create-tag",
-                    createTag: function(t) {
-                        e.handleCreateTag(t)
-                    }
-                }, c.default.createElement("li", {
-                    
+                    className: "create-tag"
                 }, c.default.createElement("input", {
                     type: "text",
-                   
-                    placeholder: "Create new tag"
-                    
-                }))), c.default.createElement("div", {
+                    value: this.state.newTagName,
+                    className: "add-tag-name-input",
+                    placeholder: "Create new tag",
+                    onChange: function(t) {
+                        e.handleTypeTagName(t)
+                    },
+                    onKeyDown: function(t) {
+                        e.handleTypeTagName(t)
+                    }
+                }), c.default.createElement("button", {
+                    name: "Add Tag",
+                    className: "button add-tag-btn",
+                    onClick: function() {
+                        e.handleCreateTag()
+                    }
+                }, "Add Tag")), c.default.createElement("div", {
                     className: "board-container"
                 }, c.default.createElement("div", {
                     className: "task-column todo"
@@ -6176,7 +6191,8 @@ object-assign
                   , t = this.state.boards.map(this.generateListing, this)
                   , n = this.state.addBoardActive ? this.generateAddBoard() : null;
                 return c.default.createElement("div", {
-                    className: "board-list-container"
+                    className: "board-list-container",
+                    id: "boards"
                 }, c.default.createElement("h1", {
                     className: "board-list-title"
                 }, "Kanban Boards"), c.default.createElement("ul", {
@@ -6759,6 +6775,7 @@ object-assign
                 return c.default.createElement("div", {
                     className: "tag-search",
                     onClick: function() {
+                        e.componentDidMount(),
                         e.activateSearch()
                     }
                 }, c.default.createElement("div", {

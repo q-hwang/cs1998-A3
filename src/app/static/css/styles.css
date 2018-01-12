@@ -628,6 +628,7 @@ a:active,a:hover {
 }
 
 .board-container {
+    position: absolute;
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -679,6 +680,36 @@ a:active,a:hover {
     border-left: 5px solid #6c5b7b
 }
 .create-tag{
-	float: right;
-	clear: left;
+    float: left;
+    clear: left;
+    margin-top:100px
 }
+.add-tag-name-input {
+    padding: 10px 2px;
+    width: 100%;
+}
+.add-tag-btn{
+    background-color: #355c7d
+}
+
+@media (max-width: 425px) {
+    #boards {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 5px;
+        width: 100%
+    }
+
+    .task-column {
+        float: left;
+        width: 100%
+    }
+} 
+
+@media (min-width: 426px) and (max-width: 991px) {
+    #boards {
+        width: 70%;
+        margin: 10px 15%;
+    }
+} 
+
