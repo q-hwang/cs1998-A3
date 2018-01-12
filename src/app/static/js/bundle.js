@@ -5832,7 +5832,7 @@ object-assign
             key: "handleDeleteTask",
             value: function(e) {
                 var t = this;
-                p.default.delete("/kanban/board_elements?id=" + e).then(function(e) {
+                p.default.delete("/kanban/board_elements?board_element_id=" + e).then(function(e) {
                     console.log(e.data),
                     t.requestEntireBoard()
                 }).catch(function(e) {
@@ -5851,6 +5851,19 @@ object-assign
                 })
             }
         }, {
+            key: "handleCreateTag",
+            value: function(e) {
+                var t = this;
+                return function(n) {
+                    p.default.post("/kanban/tags?name=" + e).then(function(e) {
+                        console.log(e.data),
+                        t.requestEntireBoard()
+                    }).catch(function(e) {
+                        console.log(e)
+                    })
+                }
+            }
+        },{
             key: "handleAddTag",
             value: function(e) {
                 var t = this;
@@ -5957,7 +5970,9 @@ object-assign
                     handleRemoveTag: function(t) {
                         return e.handleRemoveTag(t)
                     }
-                }))))
+                }))), c.default.createElement("div", {
+                    className: "creat tag"
+                }))
             }
         }]),
         t
