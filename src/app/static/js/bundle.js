@@ -5904,6 +5904,18 @@ object-assign
                 }, "Back"), c.default.createElement("h1", {
                     className: "board-title"
                 }, this.state.data.board.title || null), c.default.createElement("div", {
+                    className: "create-tag",
+                    createTag: function(t) {
+                        e.handleCreateTag(t)
+                    }
+                }, c.default.createElement("li", {
+                    
+                }, c.default.createElement("input", {
+                    type: "text",
+                   
+                    placeholder: "Create new tag"
+                    
+                }))), c.default.createElement("div", {
                     className: "board-container"
                 }, c.default.createElement("div", {
                     className: "task-column todo"
@@ -5970,9 +5982,7 @@ object-assign
                     handleRemoveTag: function(t) {
                         return e.handleRemoveTag(t)
                     }
-                }))), c.default.createElement("div", {
-                    className: "creat tag"
-                }))
+                }))))
             }
         }]),
         t
