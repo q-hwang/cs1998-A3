@@ -10,8 +10,8 @@ Original assignment: https://github.com/Cornell-PoBE/A3
 
 * [System Configuration](#system-configuration)
 * [Functionality](#functionality)
-* [Testing](#testing)
 * [Reference](#reference)
+* [Issues](#issues)
 
 ## System Configuration
 
@@ -40,6 +40,8 @@ $ vagrant up
 The app should be accessible now in localhost:8080/boards
 
 ### Deploy to server
+
+The server used in this project is `ubuntu 16.04 LTS` with public IP 52.27.242.248 and private key named `a3keypair.pem` 
 
 Configure the public IP in `hosts`
 hosts:
@@ -72,6 +74,24 @@ PLAY RECAP *********************************************************************
 <PublicIP>                 : ok=16   changed=12   unreachable=0    failed=0
 ```
 
+## Reference
 
+Original assignment: https://github.com/Cornell-PoBE/A3
+The frontend files (404.html, index.html, styles.css and bundle.js) are provided by instructors and edited by me latter.
 
+## Issues
+
+1. Upstart
+
+The original assignment was designed for ubuntu 14.04. But the server from AWS I found is ubuntu 16.04, which seems do not support upstart but systemd instead. 
+
+So the upstart script is changed from upstart.conf.j2 to upstart.service. 
+
+In recent tests, the upstart script sometimes fails to start the app at the first time. Manually start the app using gunicorn is needed. Then it works correctly.
+
+2. Migration
+
+During database migration, there would be error if the alembic_version does not meet between the folder `migration` and the table `alembic_version` in mysql. This happens when the migration folder is deleted or the app is reinstalled while the table `alembic_version` is still in mysql. 
+
+The simplest way is to delete migration folder and drop the table `alembic_version`. The data in database is kept in this process. Then run `python manage.py db init` again.
 
