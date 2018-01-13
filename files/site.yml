@@ -9,8 +9,8 @@
     LANG: en_US.UTF-8
     LANGUAGE: en_US.UTF-8
   vars:
-      repository_git_path: https://github.com/q-hwang/cs1998-A3
-      repository_path: /home/vagrant/cs1998-A3
+      repository_git_path: https://github.com/q-hwang/cs1998-A2
+      repository_path: /home/vagrant/cs1998-A2
       DB_USERNAME: newuser
       DB_PASSWORD: a
       DB_NAME: pobe_a2_db
