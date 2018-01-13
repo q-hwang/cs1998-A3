@@ -15,13 +15,13 @@ Original assignment: https://github.com/Cornell-PoBE/A3
 
 ## System Configuration
 
-Install requirements in [vene-requirements.txt] 
+Install requirements in `vene-requirements.txt`
 
 ## Functionality
 
 ### Simulate the deployment in vagrant 
 
-[bento/ubuntu-16.04] is used to simulate the deployment
+`bento/ubuntu-16.04` is used to simulate the deployment
 
 ```bash
 $ git clone https://github.com/q-hwang/cs1998-A3
@@ -37,10 +37,11 @@ $ cp files/* vagrant/
 $ cd vagrant
 $ vagrant up
 ```
+The app should be accessible now in localhost:8080/boards
 
 ### Deploy to server
 
-Configure the public IP in [hosts]
+Configure the public IP in `hosts`
 hosts:
 ```
 [webservers]
