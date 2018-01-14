@@ -25,7 +25,7 @@ Install requirements in `vene-requirements.txt`
 
 ```bash
 $ git clone https://github.com/q-hwang/cs1998-A3
-$ cd A3
+$ cd cs1998-A3
 $ pwd
 <CURR_DIRECTORY>/A3
 $ mkdir vagrant
